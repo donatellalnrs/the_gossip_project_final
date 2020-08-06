@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>La ville</title>
+  </head>
+
+<div class="container">
+  <div class="row pt-2 my-md-2 pt-md-2">
+    <h1>Tous les gossips écrits à <%=@city.name%> !</h1>
+  </div>
+    
+  <div class="row justify-content-center pt-4 my-md-5 pt-md-5 border-top">
+    <% i = 0
+    @gossips.each do |gossip| %>
+    <div class="col-4">
+      <div class="card text-center" style="width: 20rem;">
+        <div class="card-header text-primary"><strong><%=@gossips[i].title%></strong></div>
+        <div class="card-body text-wrap">
+          <p class="card-text"><strong><%=@gossips[i].user.first_name%> <%=@gossips[i].user.last_name%></strong></p>
+          <p class="card-text"><strong><%=@gossips[i].user.city.name%></strong></p>
+          <p class="card-text"><em><%=@gossips[i].content%></em></p>
+          <p class="card-text-hidden text-secondary"><%=@gossips[i].created_at%></p>
+          <a href="<%= user_path(@gossips[i].user.id) %>" class="btn btn-primary">Afficher l'auteur</a>
+        </div>
+      </div>
+    </div>
+    <% i += 1
+    end %>  
+    </div>
+  </div>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gossip</title>
+  </head>
+
+  <div class="container">
+  	<div class="row pt-2 my-md-2 pt-md-2">
+  	  <h1>Un gossip en détail !</h1>
+  	</div>
+  	<div class="row justify-content-center">
+  	  <div class="col-lg-4 col-md-6">
+  	  	<div class="card text-center" style="width: 20rem;">
+  	      <div class="card-header text-primary"><strong><%=@gossip.title%></strong></div>
+  	  	  <div class="card-body text-wrap">
+  	  	  	<p class="card-text"><strong>Écrit par <%=@gossip.user.first_name%> <%=@gossip.user.last_name%></strong></p>
+            <p class="card-text"><strong>A <%=@gossip.user.city.name%></strong></p>
+  	  	  	<p class="card-text"><em><%=@gossip.content%></em></p>
+  	  	  	<p class="card-text-hidden text-secondary"><%=@gossip.created_at%></p>
+            <a href="<%= user_path(@user.id) %>" class="btn btn-primary">Afficher l'auteur</a>
+            <p class="card-text"></p>
+            <a href="<%= city_path(@user.city.id) %>" class="btn btn-light">Afficher la ville de l'auteur</a>
+  	  	  </div>
+  	  	</div>
+  	  </div>
+    </div>
+
+    <div class="row pt-5 my-md-2 pt-md-5 border-top">
+      <h4>Commentaires :</h4>
+    </div>
+
+    <div class="row pt-2 my-md-2 pt-md-2">
+      <% i = 0
+      @comments.each do |comments| %>
+        <div class="col-lg-4 col-md-6 pt-2 my-md-2 pt-md-2">
+        <div class="card text-center" style="width: 20rem;">
+          <div class="card-body text-wrap">
+            <p class="card-text"><strong><%=@comments[i].content%></strong></p>
+            <p class="card-text-hidden text-secondary">Écrit par <%=@comments[i].user.first_name%> <%=@comments[i].user.last_name%></p>
+            <% if @current_user_id == @comments[i].user_id %>
+              <a href="<%= edit_gossip_comment_path(params[:id], @comments[i].id) %>" class="btn btn-light">Modifier le commentaire</a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% i += 1
+      end %>
+  	</div>
+
+    <div class="row pt-4 my-md-5 pt-md-5 border-top">
+      <h4>Ajouter un commentaire :</h4>
+    </div>
+    
+    <div class="row justify-content-center">
+      <form action= <%= gossip_comments_path(params[:id]) %> method="POST">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <input type="string" name="content">
+        <input type="submit" value="Valider">
+      </form>
+    </div>
+
+  </div>
+</html>
+

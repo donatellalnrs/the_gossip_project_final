@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TheGossipProjectOnRails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="../../assets/stylesheets/bootstrap.min.css">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 navbar-dark bg-dark">
+      <a class="navbar-brand font-weight-normal" href="#">The Gossip Project</a>
+      <div class="collapse navbar-collapse my-2 my-md-0 mr-md-3" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" href="<%=gossips_path%>">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/static_pages/team">Team</a>
+          <a class="nav-link" href="/static_pages/contact">Contact</a>
+        </div>
+      </div>
+
+      <% unless current_user %>
+        <div class="dropdown">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Se connecter/ S'inscrire</a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="<%= new_session_path%>">Se connecter</a>
+            <a class="dropdown-item" href="<%= new_user_path %>">S'inscrire</a>
+          </div>
+        </div>
+        <a class="btn btn-dark my-2 my-sm-0 my-2 my-lg-0" href="<%= new_session_path%>">Se connecter</a>
+        <a class="btn btn-dark my-2 my-sm-0 my-2 my-lg-0" href="<%= new_user_path %>">S'inscrire</a>
+      
+      <% else %>
+        <a href="<%= session_path(session.id) %>" class="btn btn-outline-light btn-dark my-2 my-sm-0 my-2 my-lg-0" data-confirm="Etes-vous sûr de votre choix?" data-method="DELETE">Se déconnecter</a>
+      <% end %>
+    </nav>
+
+    <%= yield %>
+
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+      <div class="row justify-content-center">
+        <div class="col-1"><a class="nav-link" href="/static_pages/team">Team</a></div>
+        <div class="col-1"><a class="nav-link" href="/static_pages/contact">Contact</a></div>
+    </footer>
+  </body>
+</html>
+

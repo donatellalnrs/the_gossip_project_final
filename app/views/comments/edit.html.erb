@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit un comment</title>
+  </head>
+
+  <div class="container">
+    <div class="row">
+      <h1>Editer un commentaire !</h1>
+    </div>
+    
+    <div class="row justify-content-center">
+      <%= form_for [@gossip, @comment] do |f| %>
+      <div class="form-group col-12">
+        <label>Commentaire</label>
+        <%= f.text_field :content, class: "form-control"%>
+      </div>
+      <div class="form-group text-right col-12">
+        <button type="submit" class="btn btn-warning">Modifier le commentaire</button>
+      </div>
+      <% end %>
+
+      <div class="row justify-content-center">
+        <a href="<%= gossip_comment_path(params[:gossip_id], params[:id]) %>" class="btn btn-dark col-2" data-confirm="Etes-vous sûr de votre choix?" data-method="DELETE">Supprimer</a>
+      </div>
+
+    </div>
+  </div>
+</html>

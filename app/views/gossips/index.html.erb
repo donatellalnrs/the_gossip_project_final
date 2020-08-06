@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>>Accueil</title>
+  </head>
+
+  <div class="container">
+    <div class="row pt-4 my-md-5 pt-md-5 border-top">
+      <% unless current_user %>
+        <h1>Bienvenue !</h1>
+      <% else %>
+        <h1>Bienvenue <%= User.find_by(id: session[:user_id]).first_name %> !</h1>
+      <% end %>
+    </div>
+
+    <div class="row pt-4 my-md-5 pt-md-5 border-top">
+      <div class= "col-10">
+        <h3>Voici une liste de tous les potins référencés sur ce site !</h3>
+      </div>
+      
+      <div class="col-2">
+        <a href="<%= new_gossip_path %>" class="btn btn-success">Créer un gossip</a>
+      </div>
+    </div>
+
+    <div class="row justify-content-center pt-4 my-md-5 pt-md-5 border-top">
+      <% i = 0
+      @gossips.each do |gossip| %>
+      <div class="col-lg-4 col-md-6 pt-2 my-md-2 pt-md-2">
+        <div class="card text-center" style="width: 20rem;">
+          <div class="card-header text-primary"><strong><%=@gossips[i].title%></strong></div>
+          <div class="card-body text-wrap">
+            <p class="card-title"><strong>Écrit par <%=@gossips[i].user.first_name%> <%=@gossips[i].user.last_name%></strong></p>
+            <p class="card-title"><%=@gossips[i].comments.count%> commentaire(s)</p>
+            <a href="<%= gossip_path(@gossips[i].id) %>" class="btn btn-primary col-8">Afficher</a>
+            <% if @current_user_id == @gossips[i].user_id %>
+              <a href="<%= edit_gossip_path(@gossips[i].id) %>" class="btn btn-light col-8">Modifier</a>
+              <a href="<%= gossip_path(@gossips[i].id) %>" class="btn btn-dark col-8" data-confirm="Etes-vous sûr de votre choix?" data-method="DELETE">Supprimer</a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% i += 1
+      end %>  
+    </div>
+
+   </div>
+</html>

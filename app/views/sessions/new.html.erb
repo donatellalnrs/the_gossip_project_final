@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Connexion</title>
+  </head>
+
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="h3 mb-3 font-weight-normal">Se connecter à</h2>
+      <h1>The Gossip Project</h1>
+    </div>
+
+    <div class="row justify-content-center border-top pt-5 my-md-4 pt-md-4 text-center">
+      <form action= <%= sessions_path %> method="POST">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <label>Email</label>
+        <input type="string" name="email">
+        <label>Mot de passe</label>
+        <input type="string" name="password">
+        <input type="submit" value="Valider">
+      </form>
+    </div>
+
+    <div class="text-center mb-4">
+      <p>Pas encore inscrit ?</p>
+      <a href="<%= new_user_path %>" class="btn btn-outline-primary my-2 my-sm-0 my-2 my-lg-0">S'inscrire</a>
+    </div>
+  </div>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>L'auteur</title>
+  </head>
+
+<div class="container">
+    <div class="row pt-2 my-md-2 pt-md-2">
+      <h1>L'auteur en détail !</h1>
+    </div>
+    <div class="row justify-content-center pt-4 my-md-5 pt-md-5 border-top">
+      <div class="col-4">
+        <div class="card text-center" style="width: 20rem;">
+          <div class="card-header text-primary"><strong><%=@user.first_name%> <%=@user.last_name%></strong></div>
+          <div class="card-body text-wrap">
+            <p class="card-text"><strong><%=@user.age%> ans</strong></p>
+            <p class="card-text"><strong>Habite à <%=@user.city.name%></strong></p>
+            <p class="card-text"><%=@user.description%></p>
+            <p class="card-text-hidden text-secondary"><%=@user.email%></p>
+            <a href="<%= city_path(@user.city.id) %>" class="btn btn-primary">Afficher la ville de l'auteur</a>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+</html>

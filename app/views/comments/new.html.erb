@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ajouter un commentaire</title>
+  </head>
+
+  <div class="container">
+    <div class="row pt-2 my-md-2 pt-md-2">
+      <h1>Ajoute ton commentaire !</h1>
+    </div>
+
+<div class="row justify-content-center">
+      <%= form_for @comment do |f| %>
+      <div class="form-group col-12">
+        <label>Commentaire</label>
+        <%= f.text_field :content, class: "form-control"%>
+      </div>
+      <div class="form-group text-right col-12">
+        <button type="submit" class="btn btn-warning">Ajouter ce commentaire</button>
+      </div>
+
+      <% end %>
+    </div>
+  </div>
+</html>

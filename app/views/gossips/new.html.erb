@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Créer un gossip</title>
+  </head>
+
+  <div class="container">
+
+    <% if @gossip.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        Nous n'avons pas réussi à créer le potin pour la (ou les) raison(s) suivante(s) :
+        <ul>
+          <% @gossip.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% elsif false %>
+      <div class="alert alert-success" role="alert">
+        Votre gossip a bien été créé ! 
+      </div>
+    <% end %>
+
+    <div class="row pt-2 my-md-2 pt-md-2">
+      <h1>Crée ton gossip !</h1>
+    </div>
+
+  <div class="row justify-content-center">
+    <%= form_for @gossip do |f| %>
+      <div class="form-group col-12">
+        <label>Titre du gossip</label>
+        <%= f.text_field :title, class: "form-control"%>
+      </div>
+      <div class="form-group col-12">
+        <label>Contenu du gossip</label>
+        <%= f.text_field :content, class: "form-control"%>
+      </div>
+      <div class="form-group col-12">
+        <label>Tag</label>
+        <select id="inputState" class="form-control">
+          <% i = 0 
+          @tags.length.times do |tag| %>
+            <option selected><%= @tags[i].title %></option>
+            <% i += 1 
+          end %>
+        </select>
+      </div>
+      <div class="form-group text-right col-12">
+        <button type="submit" class="btn btn-warning">Ajouter ce gossip</button>
+      </div>
+
+      <% end %>
+    </div>
+  </div>
+</html>
