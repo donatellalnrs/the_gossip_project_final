@@ -65,7 +65,7 @@ class GossipsController < ApplicationController
   def authenticate_user
     unless current_user
       flash[:danger] = "Merci de vous connecter !"
-      redirect_to new_session_path
+      redirect_to new_session_path :notice => "Merci de vous connecter"
     end
   end
 
